@@ -3,7 +3,6 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import { ArcherContainer, ArcherElement } from "react-archer";
 
 import LinkedList from "../features/linkedList/linkedList";
 import FloatingNode from "../components/floatingNode";
@@ -29,72 +28,37 @@ const LinkedListView = () => {
 
   const getNodes = () => {
     const nodes = list.traverse();
-    const ids = [];
-    const floatingNodes = nodes.map((element, idx) => {
+    return nodes.map((element, idx) => {
       const id = `${element}-${idx}`;
-      ids.push(id);
-      return <FloatingNode key={id + "node"} element={element} />;
+      return (
+        <Grid item xs key={id + "node"}>
+          <FloatingNode element={element} />
+        </Grid>
+      );
     });
-
-    if (listSize > 1) {
-      const arrowedNodes = [];
-      for (let idx = 0; idx < listSize; idx++) {
-        const source = ids[idx];
-        const target = ids[idx + 1];
-        if (idx < listSize - 1) {
-          arrowedNodes.push(
-            <ArcherElement
-              id={source}
-              key={source}
-              relations={[
-                {
-                  targetId: { target },
-                  targetAnchor: "left",
-                  sourceAnchor: "right",
-                },
-              ]}>
-              <div>{floatingNodes[idx]}</div>
-            </ArcherElement>
-          );
-        } else {
-          arrowedNodes.push(
-            <ArcherElement id={source} key={source}>
-              <div>{floatingNodes[idx]}</div>
-            </ArcherElement>
-          );
-        }
-      }
-      console.log(arrowedNodes);
-
-      return arrowedNodes;
-    } else {
-      return floatingNodes;
-    }
   };
 
   return (
-    <React.Fragment>
-      <Grid container direction="column" justify="center">
-        {error ? (
-          <Grid item xs>
-            <Alert severity="error">Please input a value for the node.</Alert>
-          </Grid>
-        ) : null}
+    <Grid container direction="column" justify="center">
+      {error ? (
         <Grid item xs>
-          LinkedListView
+          <Alert severity="error">Please input a value for the node.</Alert>
         </Grid>
-
-        <Grid item xs container justify="center">
-          <TextField inputRef={elementInput} label="Value" variant="outlined" />
-          <Button variant="contained" color="secondary" onClick={addNode}>
-            Add Node
-          </Button>
-        </Grid>
-      </Grid>
-      {listSize > 0 ? (
-        <ArcherContainer strokeColor="red">{getNodes()}</ArcherContainer>
       ) : null}
-    </React.Fragment>
+      <Grid item xs>
+        LinkedListView
+      </Grid>
+
+      <Grid item xs container justify="center">
+        <TextField inputRef={elementInput} label="Value" variant="outlined" />
+        <Button variant="contained" color="secondary" onClick={addNode}>
+          Add Node
+        </Button>
+      </Grid>
+      <Grid item xs container justify="center">
+        {listSize > 0 ? getNodes() : null}
+      </Grid>
+    </Grid>
   );
 };
 
