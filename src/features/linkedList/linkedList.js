@@ -29,8 +29,6 @@ export default class LinkedList {
       nodes.push(current.element);
       current = current.next;
     }
-    console.log(nodes);
-
     return nodes;
   }
 }
