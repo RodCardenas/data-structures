@@ -42,7 +42,13 @@ const App = () => {
             <Switch>
               <Route path="/" component={Layout} />
               {routes.map((route) => {
-                return <Route path={route.path} component={route.component} />;
+                return (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    component={route.component}
+                  />
+                );
               })}
             </Switch>
           </ThemeProvider>
