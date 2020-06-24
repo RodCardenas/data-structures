@@ -68,7 +68,14 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {Routes.map((route) => (
-          <ListItem button component={NavLink} to={route.path} key={route.path}>
+          <ListItem
+            button
+            component={NavLink}
+            to={route.path}
+            key={route.path}
+            onClick={() => {
+              setMobileOpen(false);
+            }}>
             <ListItemIcon>{route.icon}</ListItemIcon>
             <ListItemText primary={route.name} />
           </ListItem>
