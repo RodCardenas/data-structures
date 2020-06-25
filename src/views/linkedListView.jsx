@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Code from "../components/code";
 import Description from "../components/description";
-import { LinkedList } from "../features/linkedList/linkedList";
+import { LinkedList } from "../features/linkedList";
 import FloatingNode from "../components/floatingNode";
 
 const LinkedListView = () => {
@@ -19,8 +19,8 @@ const LinkedListView = () => {
   const elementInput = useRef(null);
 
   const addNode = () => {
-    if (elementInput.current.value) {
-      const element = elementInput.current.value;
+    const element = elementInput.current.value;
+    if (element) {
       list.add(element);
       setList(list);
       setListSize(list.size);

@@ -1,4 +1,4 @@
-export class LinkedListNode {
+class LinkedListNode {
   constructor(element) {
     this.next = null;
     this.element = element;
