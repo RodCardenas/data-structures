@@ -31,6 +31,12 @@ const LinkedListView = () => {
   };
 
   const getNodes = () => {
+    const nodes = [];
+    tree.preorderTraversal(tree.root, (val) => {
+      // console.log(val);
+      nodes.push(val);
+    });
+
     return null;
   };
 
@@ -85,9 +91,7 @@ const LinkedListView = () => {
           Add Node
         </Button>
       </Grid>
-      <Grid item xs container justify="center">
-        {treeSize ? getNodes() : null}
-      </Grid>{" "}
+      <Grid item xs container justify="center"></Grid>
       {error ? (
         <Grid item xs>
           <Alert severity="error">Please input a value for the node.</Alert>

@@ -40,18 +40,47 @@ export class BinarySearchTree {
     return;
   };
 
+  contains(current, value) {
+    if (current === null) {
+      return false;
+    }
+
+    if (current.value === value) {
+      return true;
+    } else {
+      if (value < current.value) {
+        return this.contains(current.left, value);
+      } else {
+        return this.contains(current.right, value);
+      }
+    }
+  }
+
   remove(value) {
     return;
   }
 
-  traverse() {
-    let nodes = [];
-
-    let current = this.head;
-    while (current !== null) {
-      nodes.push(current.value);
-      current = current.next;
+  preorderTraversal(current, cb) {
+    if (current !== null) {
+      cb(current.value);
+      this.preorderTraversal(current.left, cb);
+      this.preorderTraversal(current.right, cb);
     }
-    return nodes;
+  }
+
+  postorderTraversal(current, cb) {
+    if (current !== null) {
+      this.postorderTraversal(current.left, cb);
+      this.postorderTraversal(current.right, cb);
+      cb(current.value);
+    }
+  }
+
+  inorderTraversal(current, cb) {
+    if (current !== null) {
+      this.inorderTraversal(current.left, cb);
+      cb(current.value);
+      this.inorderTraversal(current.right, cb);
+    }
   }
 }
