@@ -3,6 +3,7 @@ import { Alert, AlertTitle } from "@material-ui/lab";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 
 import LinkedList from "../features/linkedList/linkedList";
 import FloatingNode from "../components/floatingNode";
@@ -50,6 +51,12 @@ const LinkedListView = () => {
     });
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      addNode();
+    }
+  };
+
   return (
     <Grid container direction="column" justify="center">
       {error ? (
@@ -58,11 +65,16 @@ const LinkedListView = () => {
         </Grid>
       ) : null}
       <Grid item xs>
-        LinkedListView
+        <Typography variant="h4">Linked List</Typography>
       </Grid>
 
       <Grid item xs container justify="center">
-        <TextField inputRef={elementInput} label="Value" variant="outlined" />
+        <TextField
+          inputRef={elementInput}
+          label="Value"
+          variant="outlined"
+          onKeyDown={handleKeyDown}
+        />
         <Button variant="contained" color="secondary" onClick={addNode}>
           Add Node
         </Button>
