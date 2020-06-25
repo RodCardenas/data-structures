@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Alert from "@material-ui/lab/Alert";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
@@ -8,13 +8,14 @@ import Typography from "@material-ui/core/Typography";
 
 import Code from "../components/code";
 import Description from "../components/description";
-import { LinkedList, LinkedListNode } from "../features/linkedList/linkedList";
+import { LinkedList } from "../features/linkedList/linkedList";
 import FloatingNode from "../components/floatingNode";
 
 const LinkedListView = () => {
   const [list, setList] = useState(new LinkedList());
   const [listSize, setListSize] = useState(list.size);
   const [error, setError] = useState(false);
+  const [code, setCode] = useState("");
   const elementInput = useRef(null);
 
   const addNode = () => {
@@ -60,10 +61,19 @@ const LinkedListView = () => {
     }
   };
 
-  const memoizedCode = useMemo(
-    () => LinkedListNode.toString() + "\n\n" + LinkedList.toString(),
-    []
-  );
+  useEffect(() => {
+    const fetchCode = async () => {
+      fetch(process.env.PUBLIC_URL + "/js/linkedList.js")
+        .then((result) => {
+          return result.text();
+        })
+        .then((text) => {
+          setCode(text);
+        });
+    };
+
+    fetchCode();
+  }, []);
 
   return (
     <Grid container direction="column" justify="center" spacing={2}>
@@ -80,7 +90,7 @@ const LinkedListView = () => {
         <Divider />
       </Grid>
       <Grid item xs>
-        <Code code={memoizedCode} />
+        <Code code={code} />
       </Grid>
       <Grid item xs>
         <Divider />
