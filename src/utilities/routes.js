@@ -21,14 +21,12 @@ const routes = [
     name: "Binary Search Tree",
     component: BinarySearchTreeView,
     icon: <BinarySearchTreeIcon />,
-    exact: true,
   },
   {
     path: "/linkedList",
     name: "Linked List",
     component: LinkedListView,
     icon: <LinkedListIcon />,
-    exact: true,
   },
 ];
 
