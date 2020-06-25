@@ -1,6 +1,11 @@
-import Node from "./node";
+export class LinkedListNode {
+  constructor(element) {
+    this.next = null;
+    this.element = element;
+  }
+}
 
-export default class LinkedList {
+export class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -8,7 +13,7 @@ export default class LinkedList {
   }
 
   add(element) {
-    const n = new Node(element);
+    const n = new LinkedListNode(element);
 
     if (this.size === 0) {
       this.head = n;

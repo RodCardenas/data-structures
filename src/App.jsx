@@ -6,7 +6,6 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Layout from "./components/layout";
 
-import history from "./utilities/history";
 import routes from "./utilities/routes";
 import store from "./utilities/store";
 
@@ -36,7 +35,7 @@ const App = () => {
 
   return (
     <React.StrictMode>
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <Switch>

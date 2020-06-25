@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import Alert from "@material-ui/lab/Alert";
 import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 
+import Code from "../components/code";
 import Description from "../components/description";
-import LinkedList from "../features/linkedList/linkedList";
+import { LinkedList, LinkedListNode } from "../features/linkedList/linkedList";
 import FloatingNode from "../components/floatingNode";
 
 const LinkedListView = () => {
@@ -57,6 +60,11 @@ const LinkedListView = () => {
     }
   };
 
+  const memoizedCode = useMemo(
+    () => LinkedListNode.toString() + "\n\n" + LinkedList.toString(),
+    []
+  );
+
   return (
     <Grid container direction="column" justify="center" spacing={2}>
       <Grid item xs>
@@ -68,7 +76,18 @@ const LinkedListView = () => {
           searching."
         />
       </Grid>
-
+      <Grid item xs>
+        <Divider />
+      </Grid>
+      <Grid item xs>
+        <Code code={memoizedCode} />
+      </Grid>
+      <Grid item xs>
+        <Divider />
+      </Grid>
+      <Grid item xs>
+        <Typography variant="h6">Interactive Demo:</Typography>
+      </Grid>
       <Grid item xs container justify="center">
         <TextField
           inputRef={elementInput}

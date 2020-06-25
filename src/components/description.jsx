@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Description = (props) => {
   return (
-    <Grid xs container direction="column" justify="center" spacing={2}>
+    <Grid container direction="column" justify="center" spacing={2}>
       <Grid item xs>
         <Typography variant="h4">{props.title}</Typography>
       </Grid>
