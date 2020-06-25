@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import Alert from "@material-ui/lab/Alert";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
 
+import Description from "../components/description";
 import LinkedList from "../features/linkedList/linkedList";
 import FloatingNode from "../components/floatingNode";
 
@@ -58,32 +58,15 @@ const LinkedListView = () => {
   };
 
   return (
-    <Grid container direction="column" justify="center">
-      {error ? (
-        <Grid item xs>
-          <Alert severity="error">Please input a value for the node.</Alert>
-        </Grid>
-      ) : null}
+    <Grid container direction="column" justify="center" spacing={2}>
       <Grid item xs>
-        <Typography variant="h4">Linked List</Typography>
-      </Grid>
-      <Grid item xs>
-        <Typography variant="h6">Good:</Typography>
-      </Grid>
-      <Grid item xs>
-        <Typography variant="body1">
-          Use when you have an unknown number of items to store. Remove nodes at
-          either the head or tail of the list to maintain a constant run time
-        </Typography>
-      </Grid>
-      <Grid item xs>
-        <Typography variant="h6">Bad:</Typography>
-      </Grid>
-      <Grid item xs>
-        <Typography variant="body1">
-          Not very good for random insertion, accessing nodes by index, and
-          searching.
-        </Typography>
+        <Description
+          title="Linked List"
+          good="Use when you have an unknown number of items to store. Remove nodes at
+          either the head or tail of the list to maintain a constant run time"
+          bad="Not very good for random insertion, accessing nodes by index, and
+          searching."
+        />
       </Grid>
 
       <Grid item xs container justify="center">
@@ -100,6 +83,11 @@ const LinkedListView = () => {
       <Grid item xs container justify="center">
         {listSize > 0 ? getNodes() : null}
       </Grid>
+      {error ? (
+        <Grid item xs>
+          <Alert severity="error">Please input a value for the node.</Alert>
+        </Grid>
+      ) : null}
     </Grid>
   );
 };
