@@ -26,12 +26,24 @@ const LinkedListView = () => {
     }
   };
 
+  const removeNode = (element) => {
+    list.remove(element);
+    setList(list);
+    setListSize(list.size);
+  };
+
   const getNodes = () => {
     const nodes = list.traverse();
     return nodes.map((element, idx) => {
       const id = `${element}-${idx}`;
       return (
-        <Grid item xs key={id + "node"}>
+        <Grid
+          item
+          xs
+          key={id + "node"}
+          onClick={(e) => {
+            removeNode(e.target.innerHTML);
+          }}>
           <FloatingNode element={element} />
         </Grid>
       );

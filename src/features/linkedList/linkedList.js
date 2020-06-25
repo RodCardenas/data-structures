@@ -21,6 +21,37 @@ export default class LinkedList {
     this.size += 1;
   }
 
+  remove(element) {
+    if (this.size === 0) {
+      return;
+    } else {
+      if (this.head.element === element) {
+        this.head = this.head.next;
+        this.size -= 1;
+        if (this.size === 0) {
+          this.head = this.tail = null;
+        } else if (this.size === 1) {
+          this.head = this.tail;
+        }
+        return;
+      } else {
+        let prev = this.head;
+        let current = this.head;
+        while (current.element !== element && current.next) {
+          prev = current;
+          current = current.next;
+        }
+
+        if (current.element === element) {
+          prev.next = current.next;
+          this.size -= 1;
+        }
+      }
+    }
+
+    return;
+  }
+
   traverse() {
     let nodes = [];
 
