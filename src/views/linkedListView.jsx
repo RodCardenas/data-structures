@@ -67,6 +67,24 @@ const LinkedListView = () => {
       <Grid item xs>
         <Typography variant="h4">Linked List</Typography>
       </Grid>
+      <Grid item xs>
+        <Typography variant="h6">Good:</Typography>
+      </Grid>
+      <Grid item xs>
+        <Typography variant="body1">
+          Use when you have an unknown number of items to store. Remove nodes at
+          either the head or tail of the list to maintain a constant run time
+        </Typography>
+      </Grid>
+      <Grid item xs>
+        <Typography variant="h6">Bad:</Typography>
+      </Grid>
+      <Grid item xs>
+        <Typography variant="body1">
+          Not very good for random insertion, accessing nodes by index, and
+          searching.
+        </Typography>
+      </Grid>
 
       <Grid item xs container justify="center">
         <TextField
